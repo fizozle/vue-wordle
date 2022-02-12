@@ -53,7 +53,22 @@ const answers = [
   'meatball', 
   'parade',
   'track',  
-  'frittaflan'
+  'frittaflan',
+  'rack',
+  'tea',
+  'chat',
+  'bat',
+  'stream',
+  'subathon',
+  'washer',
+  'lewd',
+  'sack',
+  'horse',
+  'puddle',
+  'pegathon',
+  'sub',
+  'follow',
+  'mods'
 ]
 
 export const allWords = [...answers]
