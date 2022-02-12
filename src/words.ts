@@ -2,7 +2,7 @@ const defaultMessage = ' Using word of the day instead.'
 
 export function getDayNumber() {
   const now = new Date()
-  const start = new Date(2022, 0, 0)
+  const start = new Date(2022, 1, 13)
   const diff = Number(now) - Number(start)
   let day = Math.floor(diff / (1000 * 60 * 60 * 24))
   while (day > answers.length) {
@@ -41,6 +41,7 @@ const answers = [
   'lesbian', 
   'queer', 
   'trans', 
+  'rights', 
   'nonbinary', 
   'fizone', 
   'twitch', 
