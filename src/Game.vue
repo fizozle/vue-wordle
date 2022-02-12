@@ -182,7 +182,7 @@ function genResultGrid() {
   <header>
     <h1>FIZOZLE</h1>
   </header>
-  <div id="board">
+  <div id="board" :style="{'--answer-length': answer.length + ''}">
     <div
       v-for="(row, index) in board"
       :class="['row', shakeRowIndex === index && 'shake']"
@@ -205,7 +205,7 @@ function genResultGrid() {
   </div>
   <Keyboard @key="onKey" :letter-states="letterStates" />
   <div>
-    Use only X-letter words (including names)
+    Use words or sometimes 2 words (including names)
     <br/>Built on <a
       href="https://github.com/yyx990803/vue-wordle"
       target="_blank"
@@ -228,7 +228,7 @@ function genResultGrid() {
   box-sizing: border-box;
   --height: min(420px, calc(var(--vh, 100vh) - 310px));
   height: var(--height);
-  width: min(350px, calc(var(--height) / 6 * {{ answer.length }}));
+  width: min(350px, calc(var(--height) / 6 * var(--answer-length)));
   margin: 0px auto;
 }
 .message {
@@ -249,7 +249,7 @@ function genResultGrid() {
 }
 .row {
   display: grid;
-  grid-template-columns: repeat({{ answer.length }}, 1fr);
+  grid-template-columns: repeat(var(--answer-length), 1fr);
   grid-gap: 5px;
 }
 .tile {
