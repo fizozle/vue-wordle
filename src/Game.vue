@@ -12,7 +12,7 @@ const answer = getWordOfTheDay(dayNumber)
 // Board state. Each tile is represented as { letter, state }
 const board = $ref(
   Array.from({ length: 6 }, () =>
-    Array.from({ length: 5 }, () => ({
+    Array.from({ length: answer.length }, () => ({
       letter: '',
       state: LetterState.INITIAL
     }))
@@ -176,11 +176,11 @@ function genResultGrid() {
     <div class="message" v-if="message">
       {{ message }}
       <pre v-if="grid">{{ grid }}</pre>
-      Lordle of the Rings #{{ dayNumber }}
+      Fizozle #{{ dayNumber }}
     </div>
   </Transition>
   <header>
-    <h1>LORDLE OF THE RINGS</h1>
+    <h1>FIZOZLE</h1>
   </header>
   <div id="board">
     <div
@@ -205,8 +205,7 @@ function genResultGrid() {
   </div>
   <Keyboard @key="onKey" :letter-states="letterStates" />
   <div>
-    Use only five-letter words (including names)
-    <br/>in the main text of Lord of the Rings.
+    Use only X-letter words (including names)
     <br/>Built on <a
       href="https://github.com/yyx990803/vue-wordle"
       target="_blank"
