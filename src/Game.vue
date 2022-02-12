@@ -228,7 +228,7 @@ function genResultGrid() {
   box-sizing: border-box;
   --height: min(420px, calc(var(--vh, 100vh) - 310px));
   height: var(--height);
-  width: min(350px, calc(var(--height) / 6 * 5));
+  width: min(350px, calc(var(--height) / 6 * {{ answer.length }}));
   margin: 0px auto;
 }
 .message {
@@ -249,7 +249,7 @@ function genResultGrid() {
 }
 .row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat({{ answer.length }}, 1fr);
   grid-gap: 5px;
 }
 .tile {
