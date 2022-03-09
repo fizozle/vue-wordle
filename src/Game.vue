@@ -3,9 +3,11 @@ import { onUnmounted } from 'vue'
 import { getDayNumber, getWordOfTheDay, allWords } from './words'
 import Keyboard from './Keyboard.vue'
 import { LetterState } from './types'
+import { englishWords } from './words_dictionary'
 
 // Get day number
 const dayNumber = getDayNumber()
+const pageUrl = window.location.href
 // Get word of the day
 const answer = getWordOfTheDay(dayNumber)
 
@@ -25,6 +27,7 @@ const currentRow = $computed(() => board[currentRowIndex])
 
 // Feedback state: message and shake
 let message = $ref('')
+let message2 = $ref('')
 let grid = $ref('')
 let shakeRowIndex = $ref(-1)
 
@@ -74,9 +77,9 @@ function clearTile() {
 function completeRow() {
   if (currentRow.every((tile) => tile.letter)) {
     const guess = currentRow.map((tile) => tile.letter).join('')
-    if (!allWords.includes(guess) && guess !== answer) {
+    if (!allWords.includes(guess) && englishWords[guess] == undefined && guess !== answer) {
       shake()
-      showMessage(`Not in word list`)
+      showMessage2(`Not in word list`)
       return
     }
 
@@ -128,13 +131,16 @@ function completeRow() {
       }, 1600)
     } else {
       // game over :(
+        grid = genResultGrid()
+	    currentRowIndex=-1
+
       setTimeout(() => {
         showMessage(answer.toUpperCase(), -1)
       }, 1600)
     }
   } else {
     shake()
-    showMessage('Not enough letters')
+    showMessage2('Not enough letters')
   }
 }
 
@@ -143,6 +149,15 @@ function showMessage(msg: string, time = 1000) {
   if (time > 0) {
     setTimeout(() => {
       message = ''
+    }, time)
+  }
+}
+
+function showMessage2(msg: string, time = 1000) {
+  message2 = msg
+  if (time > 0) {
+    setTimeout(() => {
+      message2 = ''
     }, time)
   }
 }
@@ -169,14 +184,34 @@ function genResultGrid() {
     })
     .join('\n')
 }
+
+function share() {
+	navigator.clipboard.writeText(document.getElementById("shareMessage").innerText + "\n" + pageUrl).then(function() {
+	  /* clipboard successfully set */
+	  showMessage2('Copied to clipboard')
+	}, function() {
+	  /* clipboard write failed */
+	  showMessage2('Failed to copy')
+	});
+}
+
 </script>
 
 <template>
   <Transition>
-    <div class="message" v-if="message">
-      {{ message }}
+    <div class="message" v-if="message" >
+      {{ message }}<br />
+	  <span id="shareMessage">
+	  Fizozle #{{ dayNumber }} {{ currentRowIndex >= 0 ? currentRowIndex + 1 : 'X' }}/6
       <pre v-if="grid">{{ grid }}</pre>
-      Fizozle #{{ dayNumber }}
+	  </span>
+	  <button @click="share">Share</button>
+
+    </div>
+  </Transition>
+  <Transition>
+    <div class="message" v-if="message2" >
+      {{ message2 }}
     </div>
   </Transition>
   <header>
