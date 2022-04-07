@@ -10,11 +10,12 @@ export function getDayNumber() {
   }
   return day
 }
+
 export function getWordOfTheDay(day: number) {
   return answers[day]
 }
 
-// copied from Wordle source
+
 const answers = [
 'fionn', 
   'zoey', 
@@ -68,7 +69,55 @@ const answers = [
   'pegathon',
   'sub',
   'follow',
-  'mods'
+  'mods',
+  'quote',
+  'thehunter',
+  'flan',
+  'eldenring',
+  'corekeeper',
+  'peggle',
+  'finalfantasy',
+  'ark',
+  'egg',
+  'horizonzerodawn',
+  'stardewvalley',
+  'satisfactory',
+  'animalcrossing',
+  'monsterhunter',
+  'titsmcgee',
+  'boobs',
+  'nice',
+  'enby',
+  'teaboard',
+  'queer',
+  'transgender',
+  'fizozle',
+  'transrights',
+  'waffle',
+  'giftsub',
+  'dono',
+  'vip',
+  'muffdivingclub',
+  'humanfallflat',
+  'powerwashsimulator',
+  'fortheking',
+  'minx',
+  'jane',
+  'goat',
+  'blep',
+  'jackbox',
+  'wiggle',
+  'pokemon',
+  'poll',
+  'prediction',
+  'poly',
+  'pride',
+  'artstream',
+  'justchatting',
+  'shakingmyteeth',
+  'chatislewd',
+  'discord',
+  'fanzone'
 ]
 
 const extraWords = [
@@ -989,7 +1038,6 @@ const extraWords = [
   'super', 
   'swire', 
   'sword', 
-  'sykes', 
   'sylos', 
   'taint', 
   'tales', 
@@ -1963,7 +2011,6 @@ const extraWords = [
   'mechanic', 
   'medieval', 
   'memories', 
-  'meredith', 
   'modpacks', 
   'molyneux', 
   'monkfish', 
@@ -2263,7 +2310,6 @@ const extraWords = [
   'pandalabs', 
   'paprikasu', 
   'parrotboy', 
-  'paulsykes', 
   'pendragon', 
   'petermann', 
   'pigisland', 
@@ -3015,7 +3061,6 @@ const extraWords = [
   'liketotallytoby', 
   'lysanderssecret', 
   'marshmallowkeep', 
-  'matthewmeredith', 
   'minecraftseries', 
   'mistralcemetery', 
   'modernsynthesis', 
